@@ -1,24 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import BooksContextProvider from './components/BooksContext/BooksContextProvider';
+import CardsContainer from './components/CardsContainer';
+import MyShelf from './components/My Shelf';
 
 function App() {
+  const [isShowing, setIsShowing] = useState(false)
+  
+
   return (
+    <BooksContextProvider>
+
+    
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        isShowing ? <MyShelf setIsShowing={setIsShowing}/> : <CardsContainer setIsShowing={setIsShowing}/>
+      }
+      
+      
     </div>
+    </BooksContextProvider>
   );
 }
 
